@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="utf-8">
+    <title>File System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.js"></script>
+    <script src="file.js"></script>
+    <script src="app.js"></script>
+
+    <script src="three.js"></script>
+    <script src="OBJLoader.js"></script>
+    <!-- build:js scripts/modules.js -->
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <!-- endbuild -->
+
+</head>
+<body ng-app="files">
+<div class="container-fluid" ng-controller="fileCtrl">
+    <div  ng-hide="login">
+        <label> UserName:
+            <input type="text" ng-model="user.userName">
+        </label><br>
+        <label> Password:
+            <input type="password" ng-model="user.pass">
+        </label>
+        <button ng-click="loginUser($event)">Login</button>
+        <a href="/register">Register</a>
+    </div>
+  <!--<div ng-repeat="file in files" ng-show="login">-->
+    <!--{{file.name}} {{file.size}}-->
+  <!--</div>-->
+    <div ng-show="login">
+        <button ng-click="toggleUpload()">Upload File</button>
+        <div ng-show="uploadToggle">
+         <input name="file" type="file" file />
+          {{file.name}} {{file.type}} {{file.size / 1000}} KB
+          <br>
+          Name of model:
+          <input type="text" ng-model="modelName">
+          <br>
+           Description of model:
+          <input type="text" ng-model="modelDesc">
+           <br>
+           Comma separated tag list:
+          <input type="text" ng-model="modelTags">
+          <button ng-click="uploadFile($event)">Upload</button>
+        </div>
+        <br>
+        <button ng-click="toggleFiles()">View Models</button>
+        <div ng-show="viewFiles" ng-repeat="file in files">
+            Model Owner: {{file.owner}}
+            <br>
+            Name of model: {{file.modelName}}
+            <br>
+            Model Description: {{file.modelDesc}}
+            <br>
+            Model Tags: {{file.modelTags}}
+            <br>
+            Model Size: {{file.size / 1000}} KB
+        </div>
+        <button ng-click="togglePermissions()">Add Permissions</button>
+        <div ng-show="viewPermissions">
+            <select ng-model="filePerm" ng-options="file.modelName for file in files | filter:{owner: currentUser}"></select>
+            <input type="text" ng-model="userPerm">
+            <button ng-click="addPerm()">Submit Permission</button>
+        </div>
+        <button ng-click="toggleDown()">View Model</button>
+        <div ng-show="viewDown">
+            <select ng-model="fileDown" ng-options="file.modelName for file in files"></select>
+            <button ng-click="retrieveFile()">Retrieve File</button>
+        </div>
+        <div class="hero-unit" ng-show="viewDown">
+            <h1>Model Display</h1>
+
+            <p>Your model will be loaded here</p>
+            <tjs-model-viewer assimp-url="assimpModelUrl"></tjs-model-viewer>
+        </div>
+        <button ng-click="logout($event)">Logout</button>
+    </div>
+</div>
+</body>
+</html>
