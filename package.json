@@ -1,0 +1,31 @@
+{
+  "name": "3drepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Repository for the 3drepo project, focused on making the world of 3d more accessible",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "aws-sdk": "^2.2.26",
+    "mongodb": "^2.0.52"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScribblesandFlapjacks/3dRepo.git"
+  },
+  "keywords": [
+    "3d",
+    "repo",
+    "model"
+  ],
+  "author": "Mitchell Finzel",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/ScribblesandFlapjacks/3dRepo/issues"
+  },
+  "homepage": "https://github.com/ScribblesandFlapjacks/3dRepo#readme"
+}
