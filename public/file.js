@@ -168,7 +168,10 @@ function FileCtrl($scope,fileApi){
     function toggleFiles(){
         if ($scope.viewFiles) {
             $scope.viewFiles = false;
-        } else $scope.viewFiles=true;
+        } else {
+	    $scope.viewFiles=true;
+	    $scope.viewDown = false;
+	}
     }
 
     function togglePermissions(){
@@ -248,7 +251,7 @@ function FileCtrl($scope,fileApi){
 
         return text;
     }
-	
+
 	function uploadFile($event){
 		$scope.errorMessage="";
         var fileName = makeid() + $scope.file.name;
