@@ -146,6 +146,7 @@ function FileCtrl($scope,fileApi){
     $scope.userPerm="";
     $scope.addPerm=addPerm;
     $scope.retrieveFile=retrieveFile;
+    $scope.retrieveFileObj=retrieveFileObj;
     $scope.fileDown="";
     $scope.objUrl="https://s3.amazonaws.com/3drepo/UJajMCube.obj";
     $scope.text = 'Hello';
@@ -274,6 +275,25 @@ function FileCtrl($scope,fileApi){
     function retrieveFile(){
         $scope.errorMessage="";
         fileApi.signGet($scope.fileDown.fileId,"")
+            .success(function(data){
+                $scope.assimpModelUrl=data.url;
+                //fileApi.download(data)
+                //    .success(function(data2){
+                //        $scope.assimpModelUrl=;
+                //      //  console.log(data2);
+                //    })
+                //    .error(function(){
+                //        $scope.errorMessage="Failed to retrieve model";
+                //    })
+            })
+            .error(function(){
+                $scope.errorMessage="Failed to get signature";
+            })
+    }
+
+    function retrieveFileObj(file){
+        $scope.errorMessage="";
+        fileApi.signGet(file.fileId,"")
             .success(function(data){
                 $scope.assimpModelUrl=data.url;
                 //fileApi.download(data)
