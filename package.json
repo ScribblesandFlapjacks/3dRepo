@@ -5,9 +5,16 @@
   "description": "Repository for the 3drepo project, focused on making the world of 3d more accessible",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.13.3",
     "aws-sdk": "^2.2.26",
-    "mongodb": "^2.0.52"
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.14.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "mongodb": "^2.0.52",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {

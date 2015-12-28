@@ -27,6 +27,8 @@ var S3_BUCKET = credentials.bucket;
 
 app.use(express.static(__dirname + '/public'));
 
+var passport = require('./src/session_manager')(app);
+
 app.get("/files", function(req,res){
   var user = req.param('user');
   console.log(user);
@@ -41,26 +43,26 @@ app.get("/files", function(req,res){
   });
 });
 
-app.get("/login", function(req,res){
-  var collection = db.get().collection('users');
-  var user = req.param('user');
-  var password2 = req.param('pword');
-  collection.find({user: user,password: password2}, {user:1}).toArray(function(err,docs){
-    res.send(docs);
-  });
+app.post('/login', passport.authenticate('login', {
+  successRedirect: '/home',
+  failureRedirect: '/popsicle',
+  failureFlash : true,
+  session: true
+}));
+
+app.post('/register', passport.authenticate('register', {
+  successRedirect: '/home',
+  failureRedirect: '/poop',
+  failureFlash : true,
+  session: true
+}));
+
+app.get('/home', function (req, res) {
+  if (!req.user) return res.redirect('/');
+  return res.send("Hello " + req.user._id);
 });
 
-app.get("/registerUser", function(req,res){
-  var collection = db.get().collection('users');
-  var user2 = req.param('user');
-  var password2 = req.param('pword');
-  collection.insert({user: user2, password: password2,permissions:[],owner:[]});
-  collection.find({user: user2,password: password2}, {user:1}).toArray(function(err,docs){
-    res.send(docs);
-  })
-});
-
-app.get("/register", function(req,res){
+app.get('/register', function(req,res){
   res.sendfile('./public/register.html');
 });
 
