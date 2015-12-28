@@ -1,0 +1,330 @@
+.col,
+.row,
+.top,
+.left,
+.bottom,
+.right,
+.center,
+.middle,
+.justify,
+.vjustify {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+}
+
+.col.col > * {
+  margin-left: 0;
+}
+
+.row.row > * {
+  margin-top: 0;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.top:not(.row),
+.row.left {
+  justify-content: flex-start;
+}
+
+.bottom:not(.row),
+.row.right {
+  justify-content: flex-end;
+}
+
+.middle:not(.row),
+.row.center {
+  justify-content: center;
+}
+
+.vjustify:not(.row),
+.row.justify {
+  justify-content: space-between;
+}
+
+.left:not(.row),
+.row.top {
+  align-items: flex-start;
+}
+
+.right:not(.row),
+.row.bottom {
+  align-items: flex-end;
+}
+
+.center:not(.row),
+.row.middle {
+  align-items: center;
+}
+
+.justify:not(.row),
+.row.vjustify {
+  align-items: stretch;
+}
+
+.col.gap-1 > * {
+  margin-top: 0.4rem;
+}
+
+.row.gap-1 > * {
+  margin-left: 0.4rem;
+}
+
+.col.gap-2 > * {
+  margin-top: 0.66rem;
+}
+
+.row.gap-2 > * {
+  margin-left: 0.66rem;
+}
+
+.col.gap-3 > * {
+  margin-top: 1rem;
+}
+
+.row.gap-3 > * {
+  margin-left: 1rem;
+}
+
+.col.gap-4 > * {
+  margin-top: 1.65rem;
+}
+
+.row.gap-4 > * {
+  margin-left: 1.65rem;
+}
+
+.col.gap-5 > * {
+  margin-top: 2.72rem;
+}
+
+.row.gap-5 > * {
+  margin-left: 2.72rem;
+}
+
+.row > *:first-child, .col > *:first-child {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.fill-1, .fill {
+  flex: 1 0 0;
+}
+
+.fill-2 {
+  flex: 2 0 0;
+}
+
+.fill-3 {
+  flex: 3 0 0;
+}
+
+.fill-4 {
+  flex: 4 0 0;
+}
+
+.fill-5 {
+  flex: 5 0 0;
+}
+
+.fill-6 {
+  flex: 6 0 0;
+}
+
+.pop-top, .pop-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.pop-bottom {
+  top: 100%;
+}
+
+.pop-top {
+  bottom: 100%;
+}
+
+.pop-left, .pop-right {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.pop-left {
+  right: 100%;
+}
+
+.pop-right {
+  left: 100%;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .xl-col,
+  .xl-row,
+  .xl-top,
+  .xl-left,
+  .xl-bottom,
+  .xl-right,
+  .xl-center,
+  .xl-middle,
+  .xl-justify,
+  .xl-vjustify {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+  }
+  .xl-col.xl-col > * {
+    margin-left: 0;
+  }
+  .xl-row.xl-row > * {
+    margin-top: 0;
+  }
+  .xl-col {
+    flex-direction: column;
+  }
+  .xl-row {
+    flex-direction: row;
+  }
+  .xl-top:not(.xl-row),
+  .xl-row.xl-left {
+    justify-content: flex-start;
+  }
+  .xl-bottom:not(.xl-row),
+  .xl-row.xl-right {
+    justify-content: flex-end;
+  }
+  .xl-middle:not(.xl-row),
+  .xl-row.xl-center {
+    justify-content: center;
+  }
+  .xl-vjustify:not(.xl-row),
+  .xl-row.xl-justify {
+    justify-content: space-between;
+  }
+  .xl-left:not(.xl-row),
+  .xl-row.xl-top {
+    align-items: flex-start;
+  }
+  .xl-right:not(.xl-row),
+  .xl-row.xl-bottom {
+    align-items: flex-end;
+  }
+  .xl-center:not(.xl-row),
+  .xl-row.xl-middle {
+    align-items: center;
+  }
+  .xl-justify:not(.xl-row),
+  .xl-row.xl-vjustify {
+    align-items: stretch;
+  }
+  .xl-col.xl-gap-1 > * {
+    margin-top: 0.4rem;
+  }
+  .xl-row.xl-gap-1 > * {
+    margin-left: 0.4rem;
+  }
+  .xl-col.xl-gap-2 > * {
+    margin-top: 0.66rem;
+  }
+  .xl-row.xl-gap-2 > * {
+    margin-left: 0.66rem;
+  }
+  .xl-col.xl-gap-3 > * {
+    margin-top: 1rem;
+  }
+  .xl-row.xl-gap-3 > * {
+    margin-left: 1rem;
+  }
+  .xl-col.xl-gap-4 > * {
+    margin-top: 1.65rem;
+  }
+  .xl-row.xl-gap-4 > * {
+    margin-left: 1.65rem;
+  }
+  .xl-col.xl-gap-5 > * {
+    margin-top: 2.72rem;
+  }
+  .xl-row.xl-gap-5 > * {
+    margin-left: 2.72rem;
+  }
+  .xl-row > *:first-child, .xl-col > *:first-child {
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .xl-fill-1, .xl-fill {
+    flex: 1 0 0;
+  }
+  .xl-fill-2 {
+    flex: 2 0 0;
+  }
+  .xl-fill-3 {
+    flex: 3 0 0;
+  }
+  .xl-fill-4 {
+    flex: 4 0 0;
+  }
+  .xl-fill-5 {
+    flex: 5 0 0;
+  }
+  .xl-fill-6 {
+    flex: 6 0 0;
+  }
+  .xl-pop-top, .xl-pop-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  .xl-pop-bottom {
+    top: 100%;
+  }
+  .xl-pop-top {
+    bottom: 100%;
+  }
+  .xl-pop-left, .xl-pop-right {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .xl-pop-left {
+    right: 100%;
+  }
+  .xl-pop-right {
+    left: 100%;
+  }
+  .xl-page {
+    min-height: 100vh;
+  }
+  .xl-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+/*# sourceMappingURL=flexblocks-responsive.css.map */
