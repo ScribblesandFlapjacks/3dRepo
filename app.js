@@ -7,7 +7,8 @@ var aws = require('aws-sdk');
 app = express(),
 port = process.env.PORT || 1337;
 
-var URL = 'mongodb://localhost.localdomain/3dRepo'
+var URL = 'mongodb://test:test@ds037175.mongolab.com:37175/3drepo'
+
 
 db.connect(URL, function(err) {
   if (err) {
