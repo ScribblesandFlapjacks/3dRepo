@@ -10,6 +10,12 @@
 
     <script src="three.js"></script>
     <script src="OBJLoader.js"></script>
+    <script src="PLYLoader.js"></script>
+    <script src="STLLoader.js"></script>
+    <script src="MTLLoader.js"></script>
+    <script src="TrackballControls.js"></script>
+    <script src="dat.gui.min.js"></script>
+    <script src="THREEx.Fullscreen.js"></script>
     <!-- build:js scripts/modules.js -->
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -35,8 +41,10 @@
     <div ng-show="login">
         <button ng-click="toggleUpload()">Upload File</button>
         <div ng-show="uploadToggle">
-         <input name="file" type="file" file />
-          {{file.name}} {{file.type}} {{file.size / 1000}} KB
+         <input name="file" type="file" accept=".obj,.mtl,.stl,.ply" file />
+            <select ng-model="uploadType" ng-options="ext for ext in acceptedExt"></select>
+            <input ng-show="uploadType == 'obj'" name="file2" type="file" accept=".mtl" file2 />
+            {{file.name}} {{file.type}} {{file.size / 1000}} KB
           <br>
           Name of model:
           <input type="text" ng-model="modelName">
@@ -72,11 +80,11 @@
             <select ng-model="fileDown" ng-options="file.modelName for file in files"></select>
             <button ng-click="retrieveFile()">Retrieve File</button>
         </div>
-        <div class="hero-unit" ng-show="viewDown">
+        <div id="scene" class="hero-unit" ng-show="viewDown">
             <h1>Model Display</h1>
 
             <p>Your model will be loaded here</p>
-            <tjs-model-viewer assimp-url="assimpModelUrl"></tjs-model-viewer>
+            <tjs-model-viewer assimp-url="assimpModelUrl" ext="fileExt"></tjs-model-viewer>
         </div>
         <button ng-click="logout($event)">Logout</button>
     </div>

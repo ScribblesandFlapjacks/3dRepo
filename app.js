@@ -67,28 +67,34 @@ app.get('/register', function(req,res){
 });
 
 app.get("/signPut", function(req,res){
-  var filename = req.param('filename');
-  var filetype = req.param('filetype');
-  aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+    var filename = req.param('filename');
+    var filetype = req.param('filetype');
+    var extension = filename.split(".").pop();
+    var types = ["mtl","stl","obj","ply"];
+    if (types.indexOf(extension) < 0){
+        console.log("wrongo")
+        return res.send("Unsupported file type")
+    }
+    aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
-  var s3 = new aws.S3();
-  var options = {
-    Bucket: S3_BUCKET,
-    Key: filename,
-    Expires: 60,
-    ContentType: filetype,
-    ACL: 'public-read'
-  };
+    var s3 = new aws.S3();
+    var options = {
+        Bucket: S3_BUCKET,
+        Key: filename,
+        Expires: 60,
+        ContentType: filetype,
+        ACL: 'private'
+    };
 
-  s3.getSignedUrl('putObject', options, function(err, data){
-    if(err) return res.send('Error with S3');
+    s3.getSignedUrl('putObject', options, function(err, data){
+        if(err) return res.send('Error with S3');
 
-    res.json({
-      signed_request: data,
-      url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + filename
+        res.json({
+            signed_request: data,
+            url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + filename
+        })
     })
-  })
-});
+  });
 
 app.get("/signGet", function(req,res){
   var filename = req.param('filename');
