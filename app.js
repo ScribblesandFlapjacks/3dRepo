@@ -67,6 +67,12 @@ app.get("/register", function(req,res){
 app.get("/signPut", function(req,res){
     var filename = req.param('filename');
     var filetype = req.param('filetype');
+    var extension = filename.split(".").pop();
+    var types = ["mtl","stl","obj","ply"];
+    if (types.indexOf(extension) < 0){
+        console.log("wrongo")
+        return res.send("Unsupported file type")
+    }
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
     var s3 = new aws.S3();
@@ -75,7 +81,7 @@ app.get("/signPut", function(req,res){
         Key: filename,
         Expires: 60,
         ContentType: filetype,
-        ACL: 'public-read'
+        ACL: 'private'
     };
 
     s3.getSignedUrl('putObject', options, function(err, data){
